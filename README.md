@@ -14,7 +14,7 @@
 
 ## Installation
 
-Download the application [here](/sdfgsdfgs.zip)
+Download the application [here](http://mockmail.plabadie.com/mockmail.zip)
 
 Unzip the file in a folder of yout choosing.
 
