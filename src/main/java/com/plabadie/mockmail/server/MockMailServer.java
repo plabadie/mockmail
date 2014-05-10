@@ -30,12 +30,15 @@ import org.apache.commons.lang3.StringUtils;
 import com.plabadie.mockmail.handler.FileOutMessageHandler;
 import org.subethamail.smtp.server.SMTPServer;
 
-public class MockMailServer {
-
+public class MockMailServer
+{
 	private int port;
 	private String outDirPath;
-	
-	public MockMailServer() {
+
+
+
+	public MockMailServer()
+    {
 		super();
 		
 		this.setOutDirPath("mail");
@@ -45,21 +48,22 @@ public class MockMailServer {
 	
 	
 	
-	public static void main(String[] args) {
-
+	public static void main(String[] args)
+    {
 		MockMailServer mms = new MockMailServer();
 
 		mms.initWithCommandLine( args );
 		
 		mms.serve();
-
 	}
 
-	private void serve() {
-		
+
+
+	private void serve()
+    {
 		File outdir = new File(getOutDirPath());
 
-        System.out.println( "MockMail 1.0 SMTP Server starting on port :" + this.getPort()  );
+        System.out.println( "mockmail 1.0 SMTP Server starting on port :" + this.getPort()  );
         System.out.println( "Email output: " + outdir.getAbsolutePath() );
 		
 		FileOutMessageHandler messageHandler = new FileOutMessageHandler();
@@ -70,13 +74,15 @@ public class MockMailServer {
 		smtpServer.start();
 	}
 
-	private void initWithCommandLine( String[] args ){
-		
+
+
+	private void initWithCommandLine( String[] args )
+    {
 		Option help = new Option( "help", "print this message" );
 
 		Option port   = OptionBuilder.withArgName( "portnumber" )
                 .hasArg()
-                .withDescription(  "Port number where MockMail serves smtp requests. Default : 2525." )
+                .withDescription(  "Port number where mockmail serves smtp requests. Default : 2525." )
                 .create( "port" );
 		
 		Option outdir = OptionBuilder.withArgName( "path" )
@@ -93,68 +99,78 @@ public class MockMailServer {
 		// create the parser
 	    CommandLineParser parser = new GnuParser();
 	    CommandLine line = null;
-	    try {
+
+	    try
+        {
 	        // parse the command line arguments
 	        line = parser.parse( options, args );
 	    }
-	    catch( ParseException exp ) {
+	    catch( ParseException exp )
+        {
 	        // oops, something went wrong
 	        System.err.println( exp.getMessage() );
 	        System.exit(1);
 	    }		
 
-	    if( line.hasOption( "help" ) ) {
+	    if( line.hasOption( "help" ) )
+        {
 		    // automatically generate the help statement
 		    HelpFormatter formatter = new HelpFormatter();
-		    formatter.printHelp( "java -jar MockMail.jar", options );
+		    formatter.printHelp( "java -jar mockmail.jar", options );
 		    System.exit(0);
 	    }
-
 	    
-	    if( line.hasOption( "port" ) ) {
+	    if( line.hasOption( "port" ) )
+        {
 	    	String portStringValue = line.getOptionValue( "port" );
 
-	    	if ( StringUtils.isNotBlank( portStringValue ) && StringUtils.isNumeric( portStringValue ) ) {
+	    	if ( StringUtils.isNotBlank( portStringValue ) && StringUtils.isNumeric( portStringValue ) )
+            {
 	    		
 	    		this.setPort( Integer.parseInt( portStringValue ) );
 	    		
 	    	}
 	    	
 	    }
-	    if( line.hasOption( "outdir" ) ) {
+	    if( line.hasOption( "outdir" ) )
+        {
 	    	
 	    	String outDirStringValue = line.getOptionValue( "outdir" ); 
 
-	    	if ( StringUtils.isNotBlank( outDirStringValue  ) ) {
+	    	if ( StringUtils.isNotBlank( outDirStringValue  ) )
+            {
 	    		
 	    		this.setOutDirPath(outDirStringValue);
 	    		
 	    	}
-	    	
 	    }
-	    
 	}
 
-	public int getPort() {
+
+
+	public int getPort()
+    {
 		return port;
 	}
 
 
 
-	public void setPort(int port) {
+	public void setPort(int port)
+    {
 		this.port = port;
 	}
 
 
 
-	public String getOutDirPath() {
+	public String getOutDirPath()
+    {
 		return outDirPath;
 	}
 
 
 
-	public void setOutDirPath(String outDirPath) {
+	public void setOutDirPath(String outDirPath)
+    {
 		this.outDirPath = outDirPath;
 	}
-	
 }

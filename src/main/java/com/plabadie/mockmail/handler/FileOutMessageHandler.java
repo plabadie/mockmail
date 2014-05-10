@@ -24,72 +24,92 @@ import org.subethamail.smtp.RejectException;
 
 import java.io.*;
 
-public class FileOutMessageHandler implements MessageHandlerFactory {
-
+public class FileOutMessageHandler implements MessageHandlerFactory
+{
 	private int sequence = 0;
 	File fileOutFolder = null;
-	
-    public MessageHandler create(MessageContext ctx) {
+
+
+
+    public MessageHandler create(MessageContext ctx)
+    {
         return new Handler(ctx);
     }
     
 
-    class Handler implements MessageHandler {
+    class Handler implements MessageHandler
+    {
         MessageContext ctx;
 
-        public Handler(MessageContext ctx) {
+
+
+        public Handler(MessageContext ctx)
+        {
                 this.ctx = ctx;
         }
-        
-        public void from(String from) throws RejectException {
-        }
 
-        public void recipient(String recipient) throws RejectException {
-        }
 
-        public void data(InputStream data) throws IOException {
+
+        public void data(InputStream data) throws IOException
+        {
         		String mailData = this.convertStreamToString(data);
 
         		sequence++;
                 
                 File dataFile = new File( getFileOutFolder().getAbsolutePath() + "/mail-" + sequence + ".eml" );
                 
-                while ( dataFile.exists() ) {
+                while ( dataFile.exists() )
+                {
                 	sequence++;
                 	dataFile = new File( getFileOutFolder().getAbsolutePath() + "/mail-" + sequence + ".eml" );
                 }
                 
                 FileUtils.writeStringToFile( dataFile , mailData);
                 System.out.println("Recieved " + dataFile.getName() );
-
         }
 
-        public void done() {
-        }
 
-        public String convertStreamToString(InputStream is) {
+
+        public String convertStreamToString(InputStream is)
+        {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 StringBuilder sb = new StringBuilder();
                 
                 String line = null;
-                try {
-                        while ((line = reader.readLine()) != null) {
-                                sb.append(line + "\n");
-                        }
-                } catch (IOException e) {
+                try
+                {
+                    while ((line = reader.readLine()) != null)
+                    {
+                            sb.append(line + "\n");
+                    }
+                }
+                catch (IOException e)
+                {
                         e.printStackTrace();
                 }
                 return sb.toString();
         }
+
+
+
+        public void from(String from) throws RejectException{}
+
+        public void recipient(String recipient) throws RejectException {}
+
+        public void done(){}
     }
 
 
-	public File getFileOutFolder() {
+
+	public File getFileOutFolder()
+    {
 		return fileOutFolder;
 	}
 
 
-	public void setFileOutFolder(File fileOutFolder) {
+
+	public void setFileOutFolder(File fileOutFolder)
+    {
 		this.fileOutFolder = fileOutFolder;
 	}
 }
