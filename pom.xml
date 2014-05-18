@@ -54,6 +54,7 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- deactivate the default jar -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
