@@ -17,6 +17,8 @@
 package com.plabadie.mockmail.handler;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.subethamail.smtp.MessageContext;
 import org.subethamail.smtp.MessageHandler;
 import org.subethamail.smtp.MessageHandlerFactory;
@@ -26,6 +28,7 @@ import java.io.*;
 
 public class FileOutMessageHandler implements MessageHandlerFactory
 {
+    private static Logger logger = LoggerFactory.getLogger( FileOutMessageHandler.class );
 	private int sequence = 0;
 	File fileOutFolder = null;
 
@@ -62,7 +65,7 @@ public class FileOutMessageHandler implements MessageHandlerFactory
             }
 
             FileUtils.writeStringToFile( dataFile, mailData );
-            System.out.println( "Recieved " + dataFile.getName() );
+            logger.info(  "Recieved email " + dataFile.getName()  );
         }
 
 

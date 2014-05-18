@@ -28,11 +28,16 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.StringUtils;
 import com.plabadie.mockmail.handler.FileOutMessageHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.subethamail.smtp.server.SMTPServer;
 
 public class MockMailServer
 {
-	private int port;
+
+    private static Logger logger = LoggerFactory.getLogger( MockMailServer.class );
+
+    private int port;
 	private String outDirPath;
 
 
@@ -50,11 +55,18 @@ public class MockMailServer
 	
 	public static void main(String[] args)
     {
-		MockMailServer mms = new MockMailServer();
+        try
+        {
+            MockMailServer mms = new MockMailServer();
 
-		mms.initWithCommandLine( args );
-		
-		mms.serve();
+            mms.initWithCommandLine( args );
+
+            mms.serve();
+        }
+        catch ( Exception e )
+        {
+            logger.error( "Mockmail error " , e );
+        }
 	}
 
 
@@ -63,15 +75,17 @@ public class MockMailServer
     {
 		File outdir = new File(getOutDirPath());
 
-        System.out.println( "mockmail 1.0 SMTP Server starting on port :" + this.getPort()  );
-        System.out.println( "Email output: " + outdir.getAbsolutePath() );
-		
+        logger.info( "Mockmail 1.0 SMTP Server starting on port " + this.getPort() );
+        logger.info( "Output in " + outdir.getAbsolutePath() );
+
 		FileOutMessageHandler messageHandler = new FileOutMessageHandler();
 		messageHandler.setFileOutFolder( outdir );
 		
 		SMTPServer smtpServer = new SMTPServer(messageHandler);
 		smtpServer.setPort(this.getPort());
 		smtpServer.start();
+
+        logger.info( "Mockmail ready" );
 	}
 
 
