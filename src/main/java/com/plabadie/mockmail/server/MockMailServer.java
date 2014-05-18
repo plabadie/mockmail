@@ -18,6 +18,7 @@ package com.plabadie.mockmail.server;
 
 import java.io.File;
 
+import com.plabadie.mockmail.util.App;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
@@ -75,7 +76,7 @@ public class MockMailServer
     {
 		File outdir = new File(getOutDirPath());
 
-        logger.info( "Mockmail 1.0 SMTP Server starting on port " + this.getPort() );
+        logger.info( "Mockmail " + App.getVersion() + " SMTP Server starting on port " + this.getPort() );
         logger.info( "Output in " + outdir.getAbsolutePath() );
 
 		FileOutMessageHandler messageHandler = new FileOutMessageHandler();
