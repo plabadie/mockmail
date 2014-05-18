@@ -5,16 +5,16 @@
     </formats>
    <fileSets>
         <fileSet>
-            <directory>${project.build.scriptSourceDirectory}</directory>
-            <outputDirectory></outputDirectory>
-            <fileMode>744</fileMode>
-            <includes>
-                <include>startup.*</include>
-            </includes>
+           <directory>${project.basedir}</directory>
+           <outputDirectory>/</outputDirectory>
+           <includes>
+               <include>README*</include>
+               <include>LICENSE*</include>
+           </includes>
         </fileSet>
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>/</outputDirectory>
             <includes>
                 <include>*.jar</include>
             </includes>
