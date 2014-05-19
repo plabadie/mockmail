@@ -36,14 +36,15 @@
 <ul>
 <li>Mockmail is a fake smtp server to use as a developer tool. </li>
 <li>When mockmail recieves an email to relay, it saves it to a file on disk.</li>
-<li>Mockmail can not relay emails to their intended recipients.</li>
+    <li>By design, mockmail does not relay emails to their intended recipients.</li>
+    <li>Mockmail is intended to be used in a developer's local environment.</li>
 </ul><h2>
 <a name="why-would-you-want-to-use-this-tool" class="anchor" href="#why-would-you-want-to-use-this-tool"><span class="octicon octicon-link"></span></a>Why would you want to use this tool.</h2>
 
 <ul>
-<li>You are developing an application that sends emails and you need a smtp to send them to.</li>
-<li>Your application possibly sends email to many different recipients.  It can be a complex and time consuming to access many email accounts for the purpose of testing.  With mockmail, just open the saved email files and you are done.</li>
-<li>You might have emails of real users in your test data and you do not want them to receive test emails.</li>
+<li>You need a simple smtp server on your workstation.</li>
+<li>You need to be able to read any sent email, regardless of the recipient.</li>
+<li>You want the peace of mind that the recipients will not recieve your test emails.</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
