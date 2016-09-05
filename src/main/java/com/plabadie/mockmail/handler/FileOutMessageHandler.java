@@ -65,7 +65,7 @@ public class FileOutMessageHandler implements MessageHandlerFactory
             }
 
             FileUtils.writeStringToFile( dataFile, mailData );
-            logger.info(  "Recieved email " + dataFile.getName()  );
+            logger.info(  "Received email to file " + dataFile.getName()  );
         }
 
 
