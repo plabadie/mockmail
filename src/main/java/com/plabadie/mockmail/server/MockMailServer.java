@@ -40,8 +40,7 @@ public class MockMailServer
 
     private int port;
 	private String outDirPath;
-
-
+	SMTPServer smtpServer;
 
 	public MockMailServer()
     {
@@ -51,9 +50,9 @@ public class MockMailServer
 		this.setPort(2525);
 		
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args)
     {
         try
@@ -72,7 +71,7 @@ public class MockMailServer
 
 
 
-	private void serve()
+	public void serve()
     {
 		File outdir = new File(getOutDirPath());
 
@@ -82,16 +81,22 @@ public class MockMailServer
 		FileOutMessageHandler messageHandler = new FileOutMessageHandler();
 		messageHandler.setFileOutFolder( outdir );
 		
-		SMTPServer smtpServer = new SMTPServer(messageHandler);
+		smtpServer = new SMTPServer(messageHandler);
 		smtpServer.setPort(this.getPort());
 		smtpServer.start();
 
-        logger.info( "Mockmail ready" );
+        logger.info( "Mockmail ready. Press ctrl-c to stop." );
+	}
+
+	public void stop()
+	{
+		logger.info( "Mockmail shutting down." );
+		smtpServer.stop();
 	}
 
 
 
-	private void initWithCommandLine( String[] args )
+	protected void initWithCommandLine( String[] args )
     {
 		Option help = new Option( "help", "print this message" );
 
