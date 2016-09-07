@@ -102,12 +102,12 @@ public class MockMailServer
 
 		Option port   = OptionBuilder.withArgName( "portnumber" )
                 .hasArg()
-                .withDescription(  "Port number where mockmail serves smtp requests. Default : 2525." )
+                .withDescription(  "Port number where mockmail listens for smtp requests. Default: 2525." )
                 .create( "port" );
 		
 		Option outdir = OptionBuilder.withArgName( "path" )
                 .hasArg()
-                .withDescription(  "Folder where the email files will be stored. Can be relative to the working dir. Default : 'mail'" )
+                .withDescription(  "Folder where the email files will be stored. Can be relative to the working dir. Default: 'mail'" )
                 .create( "outdir" );
 
 		Options options = new Options();
@@ -136,7 +136,7 @@ public class MockMailServer
         {
 		    // automatically generate the help statement
 		    HelpFormatter formatter = new HelpFormatter();
-		    formatter.printHelp( "java -jar mockmail.jar", options );
+		    formatter.printHelp( "java -jar mockmail.jar or ./mockmail.sh", options );
 		    System.exit(0);
 	    }
 	    
