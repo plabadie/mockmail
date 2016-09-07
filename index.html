@@ -23,7 +23,7 @@
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="/mockmail.zip" id="download-zip" class="button"><span>Download v1.1</span></a>
+          <a href="/mockmail.zip" id="download-zip" class="button"><span>Download v1.1.1</span></a>
           <a href="https://github.com/plabadie/mockmail" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
@@ -34,17 +34,19 @@
 <a name="what-is-mockmail" class="anchor" href="#what-is-mockmail"><span class="octicon octicon-link"></span></a>What is Mockmail</h2>
 
 <ul>
-<li>Mockmail is a fake smtp server to use as a developer tool. </li>
-<li>When mockmail recieves an email to relay, it saves it to a file on disk.</li>
-    <li>By design, mockmail does not relay emails to their intended recipients.</li>
-    <li>Mockmail is intended to be used in a developer's local environment.</li>
-</ul><h2>
+    <li>Mockmail is a fake smtp server to use as a developer tool.</li>
+    <li>Mockmail is lightweight and easy to use.</li>
+    <li>By design, Mockmail does not relay emails to their intended recipients.</li>
+    <li>Instead, every email Mockmail receives is saved to a file.</li>
+</ul>
+            <h2>
 <a name="why-would-you-want-to-use-this-tool" class="anchor" href="#why-would-you-want-to-use-this-tool"><span class="octicon octicon-link"></span></a>Why would you want to use this tool.</h2>
 
 <ul>
-<li>You need a simple smtp server on your workstation.</li>
-<li>You need to be able to read any sent email, regardless of the recipient.</li>
-<li>You want the peace of mind that the recipients will not recieve your test emails.</li>
+<li>You need a simple smtp server to test you web app.</li>
+<li>You need to be able to read every email sent by your application.</li>
+<li>You need to be able to send email to fake addresses used in your application's sample data.</li>
+<li>You want the peace of mind that the recipients will not receive your test emails in the case real emails are present in your database.</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
